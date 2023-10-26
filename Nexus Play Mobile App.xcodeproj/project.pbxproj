@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */; };
-		D796ABB22AEAF138009D97CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABB12AEAF138009D97CE /* ContentView.swift */; };
+		D796ABB22AEAF138009D97CE /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABB12AEAF138009D97CE /* LibraryView.swift */; };
 		D796ABB42AEAF13D009D97CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D796ABB32AEAF13D009D97CE /* Assets.xcassets */; };
 		D796ABB82AEAF13D009D97CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D796ABB72AEAF13D009D97CE /* Preview Assets.xcassets */; };
 		D796ABC22AEAF13D009D97CE /* Nexus_Play_Mobile_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABC12AEAF13D009D97CE /* Nexus_Play_Mobile_AppTests.swift */; };
 		D796ABCC2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABCB2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITests.swift */; };
 		D796ABCE2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABCD2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITestsLaunchTests.swift */; };
+		D796ABE02AEAF846009D97CE /* GameTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABDF2AEAF846009D97CE /* GameTitle.swift */; };
+		D796ABE52AEAF8E1009D97CE /* GameTitleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABE42AEAF8E1009D97CE /* GameTitleAPI.swift */; };
+		D796ABE72AEAF901009D97CE /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABE62AEAF901009D97CE /* LibraryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		D796ABAC2AEAF137009D97CE /* Nexus Play Mobile App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nexus Play Mobile App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nexus_Play_Mobile_AppApp.swift; sourceTree = "<group>"; };
-		D796ABB12AEAF138009D97CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D796ABB12AEAF138009D97CE /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		D796ABB32AEAF13D009D97CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D796ABB52AEAF13D009D97CE /* Nexus_Play_Mobile_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nexus_Play_Mobile_App.entitlements; sourceTree = "<group>"; };
 		D796ABB72AEAF13D009D97CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +48,9 @@
 		D796ABC72AEAF13D009D97CE /* Nexus Play Mobile AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nexus Play Mobile AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D796ABCB2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nexus_Play_Mobile_AppUITests.swift; sourceTree = "<group>"; };
 		D796ABCD2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nexus_Play_Mobile_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D796ABDF2AEAF846009D97CE /* GameTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTitle.swift; sourceTree = "<group>"; };
+		D796ABE42AEAF8E1009D97CE /* GameTitleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTitleAPI.swift; sourceTree = "<group>"; };
+		D796ABE62AEAF901009D97CE /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 		D796ABA32AEAF137009D97CE = {
 			isa = PBXGroup;
 			children = (
+				D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */,
 				D796ABAE2AEAF137009D97CE /* Nexus Play Mobile App */,
 				D796ABC02AEAF13D009D97CE /* Nexus Play Mobile AppTests */,
 				D796ABCA2AEAF13D009D97CE /* Nexus Play Mobile AppUITests */,
@@ -95,8 +102,10 @@
 		D796ABAE2AEAF137009D97CE /* Nexus Play Mobile App */ = {
 			isa = PBXGroup;
 			children = (
-				D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */,
-				D796ABB12AEAF138009D97CE /* ContentView.swift */,
+				D796ABE32AEAF8CD009D97CE /* Services */,
+				D796ABE22AEAF8C0009D97CE /* ViewModels */,
+				D796ABE12AEAF84F009D97CE /* Views */,
+				D796ABDE2AEAF7E2009D97CE /* Models */,
 				D796ABB32AEAF13D009D97CE /* Assets.xcassets */,
 				D796ABB52AEAF13D009D97CE /* Nexus_Play_Mobile_App.entitlements */,
 				D796ABB62AEAF13D009D97CE /* Preview Content */,
@@ -127,6 +136,46 @@
 				D796ABCD2AEAF13D009D97CE /* Nexus_Play_Mobile_AppUITestsLaunchTests.swift */,
 			);
 			path = "Nexus Play Mobile AppUITests";
+			sourceTree = "<group>";
+		};
+		D796ABDE2AEAF7E2009D97CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D796ABDF2AEAF846009D97CE /* GameTitle.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D796ABE12AEAF84F009D97CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D796ABE82AEAF90D009D97CE /* Library */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D796ABE22AEAF8C0009D97CE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D796ABE62AEAF901009D97CE /* LibraryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D796ABE32AEAF8CD009D97CE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D796ABE42AEAF8E1009D97CE /* GameTitleAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D796ABE82AEAF90D009D97CE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D796ABB12AEAF138009D97CE /* LibraryView.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +308,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D796ABB22AEAF138009D97CE /* ContentView.swift in Sources */,
+				D796ABB22AEAF138009D97CE /* LibraryView.swift in Sources */,
 				D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */,
+				D796ABE02AEAF846009D97CE /* GameTitle.swift in Sources */,
+				D796ABE72AEAF901009D97CE /* LibraryViewModel.swift in Sources */,
+				D796ABE52AEAF8E1009D97CE /* GameTitleAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
