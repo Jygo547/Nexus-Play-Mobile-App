@@ -11,19 +11,18 @@ import Combine
 
 class LibraryViewModel: ObservableObject {
     @Published var gameTitles: [GameTitle] = []
-    private var cancellables: Set<AnyCancellable> = []
-
-    init() {
-        fetchGameTitles()
-    }
-
+    
     func fetchGameTitles() {
-        GameTitleAPI.fetchGameTitles { [weak self] titles in
-            let sortedTitles = titles.sorted { $0.name < $1.name }
-            let titlesFrom50thOnwards = Array(sortedTitles.dropFirst(1699))
-            self?.gameTitles = titlesFrom50thOnwards
+        GameTitleAPI.shared.fetchGameTitles { [weak self] result in
+            switch result {
+            case .success(let gameTitles):
+                DispatchQueue.main.async {
+                    self?.gameTitles = gameTitles
+                }
+            case .failure(let error):
+                print("Error fetching game titles: \(error)")
+            }
         }
     }
 }
-
 

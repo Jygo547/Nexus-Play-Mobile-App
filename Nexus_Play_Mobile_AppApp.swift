@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct Nexus_Play_Mobile_AppApp: App {
+struct GameLauncherApp: App {
     var body: some Scene {
         WindowGroup {
-            LibraryView()
+            MainTabView()
         }
     }
 }

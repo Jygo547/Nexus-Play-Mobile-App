@@ -7,12 +7,18 @@
 
 import Foundation
 
-struct GameTitle: Identifiable, Decodable {
+struct GameTitle: Identifiable, Decodable, Hashable {
     let id: Int
     let name: String
-
+    let released: String
+    let backgroundImage: String
+    
     enum CodingKeys: String, CodingKey {
-        case id = "appid"
-        case name
+        case id, name, released
+        case backgroundImage = "background_image"
     }
+}
+
+struct GameTitleResponse: Decodable {
+    let results: [GameTitle]
 }
