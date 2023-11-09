@@ -10,8 +10,7 @@ import SwiftUI
 struct LibraryView: View {
     @ObservedObject var viewModel = LibraryViewModel()
 
-        
-    init() {
+   init() {
         let scrollEdgeAppearance = UINavigationBarAppearance()
         scrollEdgeAppearance.configureWithTransparentBackground()
 
@@ -23,8 +22,6 @@ struct LibraryView: View {
         UINavigationBar.appearance().standardAppearance = standardAppearance
     }
 
-
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -38,36 +35,20 @@ struct LibraryView: View {
                 // Content
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
-                        Text("Featured Games")
+                        // Recently Played Section
+                        Text("Recently Played")
                             .font(.title)
                             .fontWeight(.semibold)
                             .padding(.horizontal)
                             .padding(.top)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
+                            HStack(alignment: .top) {
+
                                 ForEach(Array(viewModel.gameTitles.prefix(5)), id: \.self) { game in
-                                    VStack(alignment: .leading) {
-                                        if let url = URL(string: game.backgroundImage) {
-                                            AsyncImage(url: url) { image in
-                                                image
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 300, height: 200)
-                                                    .clipped()
-                                            } placeholder: {
-                                                Rectangle()
-                                                    .foregroundColor(.gray)
-                                                    .frame(width: 300, height: 200)
-                                            }
-                                        }
-                                        Text(game.name)
-                                            .font(.title)
-                                            .fontWeight(.semibold)
-                                            .padding(.vertical, 5)
-                                        Text("Release Date: \(game.released)")
+                                    NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
+                                        GameRow(game: game)
                                     }
-                                    .padding()
                                 }
                             }
                         }
@@ -75,36 +56,20 @@ struct LibraryView: View {
                             viewModel.fetchGameTitles()
                         }
                         
-                        Text("Recommended")
+                        // All Games Section
+                        Text("All Games")
                             .font(.title)
                             .fontWeight(.semibold)
                             .padding(.horizontal)
                             .padding(.top)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
+                            HStack(alignment: .top) {
+
                                 ForEach(Array(viewModel.gameTitles.dropFirst(5).prefix(10)), id: \.self) { game in
-                                    VStack(alignment: .leading) {
-                                        if let url = URL(string: game.backgroundImage) {
-                                            AsyncImage(url: url) { image in
-                                                image
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 300, height: 200)
-                                                    .clipped()
-                                            } placeholder: {
-                                                Rectangle()
-                                                    .foregroundColor(.gray)
-                                                    .frame(width: 300, height: 200)
-                                            }
-                                        }
-                                        Text(game.name)
-                                            .font(.title)
-                                            .fontWeight(.semibold)
-                                            .padding(.vertical, 5)
-                                        Text("Release Date: \(game.released)")
+                                    NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
+                                        GameRow(game: game)
                                     }
-                                    .padding()
                                 }
                             }
                         }
@@ -129,8 +94,46 @@ struct LibraryView: View {
     }
 }
 
+// New struct for the game row view
+struct GameRow: View {
+    let game: GameTitle
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            if let url = URL(string: game.backgroundImage) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 300, height: 200)
+                        .cornerRadius(5)
+                        .clipped()
+                } placeholder: {
+                    Rectangle()
+                        .foregroundColor(.gray)
+                        .frame(width: 300, height: 200)
+                }
+            }
+            Text(game.name)
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.leading)
+                .padding(.vertical, 5)
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(nil)
+                .frame(width: 300, alignment: .leading)
+                
+            Text("Release Date: \(game.released)")
+                .frame(width: 300, alignment: .leading)
+        }
+        .padding()
+    }
+}
+
+// Preview
 struct LibraryView_Previews: PreviewProvider {
     static var previews: some View {
         LibraryView()
     }
 }
+

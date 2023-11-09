@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct MainTabView: View {
+struct MainView: View {
     
     init() {
             UITabBar.appearance().barTintColor = .black 
@@ -17,14 +17,15 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
+            
+            StoreView()
+                .tabItem {
+                    Label("Store", systemImage: "cart")
+                }
+            
             LibraryView()
                 .tabItem {
                     Label("Library", systemImage: "book")
-                }
-            
-            Text("Store")
-                .tabItem {
-                    Label("Store", systemImage: "cart")
                 }
             
             Text("Community")
@@ -41,6 +42,6 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView()
+    MainView()
 }
 
