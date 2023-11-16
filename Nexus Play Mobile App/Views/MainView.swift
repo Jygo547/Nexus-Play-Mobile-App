@@ -28,9 +28,9 @@ struct MainView: View {
                     Label("Library", systemImage: "book")
                 }
             
-            Text("Community")
+            CartView(gameId: 123)
                 .tabItem {
-                    Label("Community", systemImage: "person.3")
+                    Label("Cart", systemImage: "cart.fill")
                 }
             
             Text("Profile")

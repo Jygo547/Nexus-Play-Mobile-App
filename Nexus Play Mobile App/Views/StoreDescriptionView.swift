@@ -1,13 +1,13 @@
 //
-//  GameDescription View.swift
+//  StoreDescription.swift
 //  Nexus Play Mobile App
 //
-//  Created by ATLAS Checkout 6 Guest on 11/9/23.
+//  Created by ATLAS Checkout 6 Guest on 11/16/23.
 //
 
 import SwiftUI
 
-struct GameDescriptionView: View {
+struct StoreDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
     
     @State private var price: Double = Double.random(in: 10...100)
@@ -58,6 +58,17 @@ struct GameDescriptionView: View {
                             .fontWeight(.bold)
                             .padding(.top, 5)
                         
+                        HStack(alignment: .center, spacing: 2) {
+                            Text("Rating:")
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.yellow)
+                                .padding(.leading, 5)
+                            Text(String(format: "%.2f", gameDescription.rating))
+                        }
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.top, 5)
+                        
                         Text("Release Date: \(gameDescription.released)")
                             .font(.title3)
                             .fontWeight(.semibold)
@@ -72,7 +83,7 @@ struct GameDescriptionView: View {
                             
                             Spacer()
                             
-                            NavigationLink(destination: CartView(gameId: 123)) {
+                            NavigationLink(destination: CartView(gameId: gameDescription.id)) {
                                 Image(systemName: "cart.fill.badge.plus")
                                 
                                 Text("Add to cart")
@@ -119,8 +130,9 @@ struct GameDescriptionView: View {
     }
 }
 
-struct GameDescriptionView_Previews: PreviewProvider {
+struct StoreDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        GameDescriptionView(gameId: 123)
+        StoreDescriptionView(gameId: 123)
     }
 }
+

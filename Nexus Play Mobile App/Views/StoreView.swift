@@ -55,8 +55,8 @@ struct StoreView: View {
                             HStack(alignment: .top) {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(15).prefix(5)), id: \.self) { game in
-                                    NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
-                                        GameRow(game: game)
+                                    NavigationLink(destination: StoreDescriptionView(gameId: game.id)) {
+                                        StoreRow(game: game)
                                     }
                                 }
                             }
@@ -76,8 +76,8 @@ struct StoreView: View {
                             HStack(alignment: .top) {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(2)), id: \.self) { game in
-                                    NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
-                                        GameRow(game: game)
+                                    NavigationLink(destination: StoreDescriptionView(gameId: game.id)) {
+                                        StoreRow(game: game)
                                     }
                                 }
                             }
@@ -131,6 +131,50 @@ struct MainBanner: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(nil)
                 .frame(maxWidth: 400, alignment: .center)
+        }
+        .padding()
+    }
+}
+
+//New Struct for Store Games
+
+struct StoreRow: View {
+    let game: GameTitle
+    
+    @State private var price: Double = Double.random(in: 10...100)
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            if let url = URL(string: game.backgroundImage) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 300, height: 200)
+                        .cornerRadius(5)
+                        .clipped()
+                } placeholder: {
+                    Rectangle()
+                        .foregroundColor(.gray)
+                        .frame(width: 300, height: 200)
+                }
+            }
+                
+            Text(game.name)
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.leading)
+                .padding(.vertical, 5)
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(nil)
+                .frame(width: 300, alignment: .leading)
+                
+            Text(String(format: "$%.2f", price))
+                .padding(.vertical, 7)
+                .padding(.horizontal, 10)
+                .fontWeight(.bold)
+                .background(Color.green)
+                .cornerRadius(5)
         }
         .padding()
     }

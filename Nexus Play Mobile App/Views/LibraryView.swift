@@ -47,7 +47,7 @@ struct LibraryView: View {
 
                                 ForEach(Array(viewModel.gameTitles.prefix(5)), id: \.self) { game in
                                     NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
-                                        GameRow(game: game)
+                                        LibRow(game: game)
                                     }
                                 }
                             }
@@ -68,7 +68,7 @@ struct LibraryView: View {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(5).prefix(10)), id: \.self) { game in
                                     NavigationLink(destination: GameDescriptionView(gameId: game.id)) {
-                                        GameRow(game: game)
+                                        LibRow(game: game)
                                     }
                                 }
                             }
@@ -95,7 +95,7 @@ struct LibraryView: View {
 }
 
 // New struct for the game row view
-struct GameRow: View {
+struct LibRow: View {
     let game: GameTitle
     
     var body: some View {
