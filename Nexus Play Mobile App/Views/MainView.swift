@@ -10,6 +10,8 @@ import SwiftUI
 
 struct MainView: View {
     
+    let viewModel = GameDescriptionViewModel()  
+    
     init() {
             UITabBar.appearance().barTintColor = .black 
         }
@@ -28,7 +30,7 @@ struct MainView: View {
                     Label("Library", systemImage: "book")
                 }
             
-            CartView(gameId: 123)
+            CartView(viewModel: viewModel)
                 .tabItem {
                     Label("Cart", systemImage: "cart.fill")
                 }

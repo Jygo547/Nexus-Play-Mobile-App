@@ -9,12 +9,12 @@ import SwiftUI
 
 struct StoreDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
-    
+    let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
     
     init(gameId: Int) {
+        self.gameId = gameId
         viewModel = GameDescriptionViewModel()
-        viewModel.fetchGameDescription(id: gameId)
         
         let scrollEdgeAppearance = UINavigationBarAppearance()
         scrollEdgeAppearance.configureWithTransparentBackground()
@@ -25,6 +25,14 @@ struct StoreDescriptionView: View {
 
         UINavigationBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
         UINavigationBar.appearance().standardAppearance = standardAppearance
+    }
+    
+    private func addToCart() {
+        var cartIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
+        if !cartIds.contains(gameId) {
+            cartIds.append(gameId)
+            UserDefaults.standard.set(cartIds, forKey: "cartIds")
+        }
     }
     
     var body: some View {
@@ -40,7 +48,7 @@ struct StoreDescriptionView: View {
             
     //      Content
             ScrollView {
-                if let gameDescription = viewModel.gameDescription {
+                if let gameDescription = viewModel.gameDescriptions[gameId] {
                     VStack(alignment: .leading) {
                         
                         if let url = URL(string: gameDescription.backgroundImage) {
@@ -83,17 +91,18 @@ struct StoreDescriptionView: View {
                             
                             Spacer()
                             
-                            NavigationLink(destination: CartView(gameId: gameDescription.id)) {
-                                Image(systemName: "cart.fill.badge.plus")
-                                
-                                Text("Add to cart")
-                                    .padding(.horizontal, 2)
-                                    
+                            NavigationLink(destination: CartView(viewModel: viewModel)) {
+                                        Image(systemName: "cart.fill.badge.plus")
+                                        Text("Add to cart")
+                                            .padding(.horizontal, 2)
                                 }
                                 .padding()
                                 .foregroundColor(.white)
                                 .background(Color.pink)
                                 .cornerRadius(5)
+                                .onTapGesture {
+                                    addToCart()
+                                }
                                 
                         }
                         .padding(.top, 5)
@@ -118,6 +127,9 @@ struct StoreDescriptionView: View {
             }
             .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewModel.fetchGameDescriptions(ids: [gameId])
+            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Image("Logo")

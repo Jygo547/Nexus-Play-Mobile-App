@@ -7,22 +7,41 @@
 
 import Combine
 
+import Foundation
+
 class GameDescriptionViewModel: ObservableObject {
-    @Published var gameDescription: GameDescription?
+    @Published var gameDescriptions: [Int: GameDescription] = [:] // For multiple game descriptions
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    func fetchGameDescription(id: Int) {
+    // New method to fetch multiple game descriptions
+    
+    func fetchGameDescriptions(ids: [Int]) {
         isLoading = true
-        GameTitleAPI.shared.fetchGameDescription(id: id) { [weak self] result in
-            self?.isLoading = false
-            switch result {
-            case .success(let description):
-                self?.gameDescription = description
-            case .failure(let error):
-                self?.errorMessage = error.localizedDescription
+        let group = DispatchGroup()
+
+        ids.forEach { id in
+            group.enter()
+            GameTitleAPI.shared.fetchGameDescription(id: id) { [weak self] result in
+                DispatchQueue.main.async {
+                    defer { group.leave() }
+                    guard let strongSelf = self else { return }
+                    switch result {
+                    case .success(let description):
+                        strongSelf.gameDescriptions[id] = description
+                    case .failure(let error):
+                        strongSelf.errorMessage = error.localizedDescription
+                    }
+                }
             }
         }
+
+        group.notify(queue: .main) {
+            [weak self] in
+            self?.isLoading = false
+        }
     }
+
 }
+
 

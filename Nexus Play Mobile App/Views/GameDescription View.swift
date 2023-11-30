@@ -9,12 +9,13 @@ import SwiftUI
 
 struct GameDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
-    
+    let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
     
     init(gameId: Int) {
+        self.gameId = gameId
         viewModel = GameDescriptionViewModel()
-        viewModel.fetchGameDescription(id: gameId)
+        viewModel.fetchGameDescriptions(ids: [gameId])
         
         let scrollEdgeAppearance = UINavigationBarAppearance()
         scrollEdgeAppearance.configureWithTransparentBackground()
@@ -40,7 +41,7 @@ struct GameDescriptionView: View {
             
     //      Content
             ScrollView {
-                if let gameDescription = viewModel.gameDescription {
+                if let gameDescription = viewModel.gameDescriptions[gameId] {
                     VStack(alignment: .leading) {
                         
                         if let url = URL(string: gameDescription.backgroundImage) {
@@ -62,30 +63,6 @@ struct GameDescriptionView: View {
                             .font(.title3)
                             .fontWeight(.semibold)
                             .padding(.top, 5)
-                        
-                        HStack {
-                            Text(String(format: "$%.2f", price))
-                                .padding()
-                                .fontWeight(.bold)
-                                .background(Color.green)
-                                .cornerRadius(5)
-                            
-                            Spacer()
-                            
-                            NavigationLink(destination: CartView(gameId: 123)) {
-                                Image(systemName: "cart.fill.badge.plus")
-                                
-                                Text("Add to cart")
-                                    .padding(.horizontal, 2)
-                                    
-                                }
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.pink)
-                                .cornerRadius(5)
-                                
-                        }
-                        .padding(.top, 5)
                         
                         Text("Description:")
                             .font(.title3)

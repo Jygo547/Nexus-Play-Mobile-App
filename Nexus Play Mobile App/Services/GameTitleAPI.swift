@@ -10,7 +10,7 @@ import Foundation
 class GameTitleAPI {
     static let shared = GameTitleAPI()
     private let baseURL = "https://api.rawg.io/api/games"
-    private let apiKey = "58cd0b7f651f43f39a9bc30c5994b3e3"
+    private let apiKey = "768367e8ccff4cb9a6f81e75121171d0"
     
 //    For LibraryView & Store View
     
