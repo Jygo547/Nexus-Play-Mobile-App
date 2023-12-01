@@ -20,7 +20,9 @@ struct MainView: View {
     var body: some View {
         TabView {
             
-            StoreView()
+            NavigationView {
+                StoreView()
+            }
                 .tabItem {
                     Label("Store", systemImage: "cart")
                 }
@@ -30,7 +32,9 @@ struct MainView: View {
                     Label("Library", systemImage: "book")
                 }
             
-            CartView(viewModel: viewModel)
+            NavigationStack {
+                CartView(viewModel: viewModel)
+            }
                 .tabItem {
                     Label("Cart", systemImage: "cart.fill")
                 }

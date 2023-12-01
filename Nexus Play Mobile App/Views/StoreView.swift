@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StoreView: View {
     @ObservedObject var viewModel = LibraryViewModel()
+    @StateObject var gameDescriptionViewModel = GameDescriptionViewModel()
 
    init() {
         let scrollEdgeAppearance = UINavigationBarAppearance()
@@ -23,7 +24,6 @@ struct StoreView: View {
     }
 
     var body: some View {
-        NavigationView {
             ZStack {
                 // Background
                 Image("BackgroundImage")
@@ -55,7 +55,9 @@ struct StoreView: View {
                             HStack(alignment: .top) {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(15).prefix(5)), id: \.self) { game in
-                                    NavigationLink(destination: StoreDescriptionView(gameId: game.id)) {
+                                    NavigationLink(destination: NavigationView {
+                                        StoreDescriptionView(gameId: game.id, viewModel: gameDescriptionViewModel)
+                                    }) {
                                         StoreRow(game: game)
                                     }
                                 }
@@ -76,7 +78,9 @@ struct StoreView: View {
                             HStack(alignment: .top) {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(2)), id: \.self) { game in
-                                    NavigationLink(destination: StoreDescriptionView(gameId: game.id)) {
+                                    NavigationLink(destination: NavigationView {
+                                        StoreDescriptionView(gameId: game.id, viewModel: gameDescriptionViewModel)
+                                    }) {
                                         StoreRow(game: game)
                                     }
                                 }
@@ -99,7 +103,7 @@ struct StoreView: View {
                         .frame(height: 30)
                 }
             }
-        }
+        
     }
 }
 

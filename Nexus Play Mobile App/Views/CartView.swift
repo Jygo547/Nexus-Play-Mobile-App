@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CartView: View {
-    @ObservedObject var viewModel: GameDescriptionViewModel
+    @StateObject var viewModel: GameDescriptionViewModel
     @State private var price: Double = Double.random(in: 10...100)
     @State private var cartGameIds: [Int] = []
 
     init(viewModel: GameDescriptionViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
         
         // Navigation bar appearance settings
         let scrollEdgeAppearance = UINavigationBarAppearance()
@@ -29,7 +29,6 @@ struct CartView: View {
     }
     
     var body: some View {
-        NavigationView {
             ZStack {
                 // Background
                 Image("BackgroundImage")
@@ -108,9 +107,9 @@ struct CartView: View {
                                 
                                 Spacer()
                                 
-                                NavigationLink(destination: StoreView()) {
+                                NavigationLink(destination: PaymentDetailsView()) {
                                     Image(systemName: "creditcard.fill")
-                                    Text("Purchase")
+                                    Text("Checkout")
                                 }
                                 .padding()
                                 .background(Color.green)
@@ -128,9 +127,9 @@ struct CartView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
-                    cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
-                    viewModel.fetchGameDescriptions(ids: cartGameIds)
-                }
+                cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
+                viewModel.fetchGameDescriptions(ids: cartGameIds)
+            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Image("Logo")
@@ -139,10 +138,7 @@ struct CartView: View {
                         .frame(height: 30)
                 }
             }
-        }
-        .onAppear {
-                    viewModel.fetchGameDescriptions(ids: cartGameIds)
-                }
+        
     }
 }
 

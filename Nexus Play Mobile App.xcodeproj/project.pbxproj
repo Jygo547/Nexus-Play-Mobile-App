@@ -24,6 +24,7 @@
 		D799D0BD2AFD8EB8000057CD /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D799D0BC2AFD8EB8000057CD /* StoreView.swift */; };
 		D799D0BF2B06B7B4000057CD /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D799D0BE2B06B7B4000057CD /* CartView.swift */; };
 		D799D0C12B06C448000057CD /* StoreDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D799D0C02B06C448000057CD /* StoreDescriptionView.swift */; };
+		D799D0C32B19AEC8000057CD /* PaymentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D799D0C22B19AEC8000057CD /* PaymentDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		D799D0BC2AFD8EB8000057CD /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		D799D0BE2B06B7B4000057CD /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		D799D0C02B06C448000057CD /* StoreDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDescriptionView.swift; sourceTree = "<group>"; };
+		D799D0C22B19AEC8000057CD /* PaymentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				D799D0BE2B06B7B4000057CD /* CartView.swift */,
 				D796ABB12AEAF138009D97CE /* LibraryView.swift */,
 				D799D0BC2AFD8EB8000057CD /* StoreView.swift */,
+				D799D0C22B19AEC8000057CD /* PaymentDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				D796ABE72AEAF901009D97CE /* LibraryViewModel.swift in Sources */,
 				D799D0C12B06C448000057CD /* StoreDescriptionView.swift in Sources */,
 				D799D0BF2B06B7B4000057CD /* CartView.swift in Sources */,
+				D799D0C32B19AEC8000057CD /* PaymentDetailsView.swift in Sources */,
 				D799D0B92AFD835D000057CD /* GameDescription.swift in Sources */,
 				D796ABE52AEAF8E1009D97CE /* GameTitleAPI.swift in Sources */,
 				D799D0BD2AFD8EB8000057CD /* StoreView.swift in Sources */,
