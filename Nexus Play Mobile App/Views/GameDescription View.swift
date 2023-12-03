@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import UIKit
+
 struct GameDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
     let gameId: Int

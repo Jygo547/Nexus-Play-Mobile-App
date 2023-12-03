@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import UIKit
+
 struct CartView: View {
     @StateObject var viewModel: GameDescriptionViewModel
     @State private var price: Double = Double.random(in: 10...100)

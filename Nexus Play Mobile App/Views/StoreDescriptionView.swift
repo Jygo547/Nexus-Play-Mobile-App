@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import UIKit
+
 struct StoreDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
     let gameId: Int
@@ -107,7 +109,7 @@ struct StoreDescriptionView: View {
                                     .cornerRadius(5)
                                 }
                                 
-                                if let selectedGameId = selectedGameId {
+                                if selectedGameId != nil {
                                     // NavigationLink triggered by selectedGameId
                                     NavigationLink(destination: CartView(viewModel: viewModel), tag: gameId, selection: $selectedGameId) {
                                         EmptyView()

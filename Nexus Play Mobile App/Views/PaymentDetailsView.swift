@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import UIKit
+
 struct PaymentDetailsView: View {
     @State private var cardNumber: String = ""
     @State private var expirationDate: String = ""
