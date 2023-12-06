@@ -123,14 +123,14 @@ struct CartView: View {
                     } else if viewModel.isLoading {
                         ProgressView()
                     } else {
-                        Text("Could not load game details.")
+                        Text("Feels too empty? Add games from your Store")
                     }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
-                viewModel.fetchGameDescriptions(ids: cartGameIds)
+//                viewModel.fetchGameDescriptions(ids: cartGameIds)
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

@@ -25,7 +25,7 @@ struct MainView: View {
                 StoreView()
             }
                 .tabItem {
-                    Label("Store", systemImage: "cart")
+                    Label("Store", systemImage: "tag")
                 }
             
             LibraryView()

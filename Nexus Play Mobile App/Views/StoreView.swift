@@ -80,9 +80,9 @@ struct StoreView: View {
                             HStack(alignment: .top) {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(2)), id: \.self) { game in
-                                    NavigationLink(destination: NavigationView {
+                                    NavigationLink(destination:
                                         StoreDescriptionView(gameId: game.id, viewModel: gameDescriptionViewModel)
-                                    }) {
+                                    ) {
                                         StoreRow(game: game)
                                     }
                                 }

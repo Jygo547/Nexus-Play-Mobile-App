@@ -115,6 +115,13 @@ struct StoreDescriptionView: View {
                                         EmptyView()
                                     }
                                     .hidden() // Hide the NavigationLink
+//                                    NavigationLink("", value: gameId)
+//                                        .hidden()
+//                                        .navigationDestination(for: Int.self) { id in
+//                                            if id == selectedGameId {
+//                                                CartView(viewModel: viewModel)
+//                                            }
+//                                        }
                                 }
                                 
                             }
