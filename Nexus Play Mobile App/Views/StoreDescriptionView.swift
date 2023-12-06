@@ -11,6 +11,8 @@ import UIKit
 
 struct StoreDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
+//    @EnvironmentObject var tabSelectionManager: TabSelectionManager
+    
     let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
     @State private var selectedGameId: Int?
@@ -36,6 +38,8 @@ struct StoreDescriptionView: View {
             cartIds.append(gameId)
             UserDefaults.standard.set(cartIds, forKey: "cartIds")
         }
+//        tabSelectionManager.selectedTab = 2
+        
         print("Function called")
     }
     
@@ -114,14 +118,7 @@ struct StoreDescriptionView: View {
                                     NavigationLink(destination: CartView(viewModel: viewModel), tag: gameId, selection: $selectedGameId) {
                                         EmptyView()
                                     }
-                                    .hidden() // Hide the NavigationLink
-//                                    NavigationLink("", value: gameId)
-//                                        .hidden()
-//                                        .navigationDestination(for: Int.self) { id in
-//                                            if id == selectedGameId {
-//                                                CartView(viewModel: viewModel)
-//                                            }
-//                                        }
+                                    .hidden()
                                 }
                                 
                             }

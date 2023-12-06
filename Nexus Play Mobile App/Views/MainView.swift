@@ -9,9 +9,15 @@ import SwiftUI
 
 import UIKit
 
+class TabSelectionManager: ObservableObject {
+    @Published var selectedTab: Int = 0
+}
+
 struct MainView: View {
     
-    let viewModel = GameDescriptionViewModel()  
+    let viewModel = GameDescriptionViewModel()
+    
+    @StateObject var tabSelectionManager = TabSelectionManager()
     
     init() {
             UITabBar.appearance().barTintColor = .black 
@@ -19,7 +25,7 @@ struct MainView: View {
     
     
     var body: some View {
-        TabView {
+        TabView(selection: $tabSelectionManager.selectedTab) {
             
             NavigationView {
                 StoreView()
@@ -27,11 +33,13 @@ struct MainView: View {
                 .tabItem {
                     Label("Store", systemImage: "tag")
                 }
+                .tag(0)
             
             LibraryView()
                 .tabItem {
                     Label("Library", systemImage: "book")
                 }
+                .tag(1)
             
             NavigationStack {
                 CartView(viewModel: viewModel)
@@ -39,12 +47,16 @@ struct MainView: View {
                 .tabItem {
                     Label("Cart", systemImage: "cart.fill")
                 }
+                .tag(2)
             
             Text("Profile")
                 .tabItem {
                     Label("Profile", systemImage: "person.circle")
                 }
+                .tag(3)
         }
+        .environmentObject(tabSelectionManager)
+
     }
 }
 

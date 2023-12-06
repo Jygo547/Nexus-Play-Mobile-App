@@ -123,14 +123,20 @@ struct CartView: View {
                     } else if viewModel.isLoading {
                         ProgressView()
                     } else {
+
                         Text("Feels too empty? Add games from your Store")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(Color.white)
+                            .padding(.top, 350)
+                        
                     }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
-//                viewModel.fetchGameDescriptions(ids: cartGameIds)
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
