@@ -124,7 +124,7 @@ struct StoreDescriptionView: View {
                             }
                             .padding(.top, 5)
                             .onAppear {
-                                viewModel.fetchGameDescriptions(ids: [gameId])
+                                viewModel.fetchCartItems(ids: [gameId])
                             }
                             
                             Text("Description:")

@@ -11,6 +11,7 @@ import Foundation
 
 class GameDescriptionViewModel: ObservableObject {
     @Published var gameDescriptions: [Int: GameDescription] = [:] // For multiple game descriptions
+    @Published var cartItems: [Int: GameDescription] = [:]
     @Published var isLoading = false
     @Published var errorMessage: String?
     
@@ -29,6 +30,32 @@ class GameDescriptionViewModel: ObservableObject {
                     switch result {
                     case .success(let description):
                         strongSelf.gameDescriptions[id] = description
+                    case .failure(let error):
+                        strongSelf.errorMessage = error.localizedDescription
+                    }
+                }
+            }
+        }
+
+        group.notify(queue: .main) {
+            [weak self] in
+            self?.isLoading = false
+        }
+    }
+    
+    func fetchCartItems(ids: [Int]) {
+        isLoading = true
+        let group = DispatchGroup()
+
+        ids.forEach { id in
+            group.enter()
+            GameTitleAPI.shared.fetchGameDescription(id: id) { [weak self] result in
+                DispatchQueue.main.async {
+                    defer { group.leave() }
+                    guard let strongSelf = self else { return }
+                    switch result {
+                    case .success(let description):
+                        strongSelf.cartItems[id] = description
                     case .failure(let error):
                         strongSelf.errorMessage = error.localizedDescription
                     }
