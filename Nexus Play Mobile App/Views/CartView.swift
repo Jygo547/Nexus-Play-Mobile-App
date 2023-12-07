@@ -137,6 +137,7 @@ struct CartView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
+                
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

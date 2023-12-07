@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D73A65032B2197620045D1A0 /* PaymentSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */; };
 		D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */; };
 		D796ABB22AEAF138009D97CE /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABB12AEAF138009D97CE /* LibraryView.swift */; };
 		D796ABB42AEAF13D009D97CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D796ABB32AEAF13D009D97CE /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessView.swift; sourceTree = "<group>"; };
 		D796ABAC2AEAF137009D97CE /* Nexus Play Mobile App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nexus Play Mobile App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nexus_Play_Mobile_AppApp.swift; sourceTree = "<group>"; };
 		D796ABB12AEAF138009D97CE /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				D796ABB12AEAF138009D97CE /* LibraryView.swift */,
 				D799D0BC2AFD8EB8000057CD /* StoreView.swift */,
 				D799D0C22B19AEC8000057CD /* PaymentDetailsView.swift */,
+				D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				D799D0B72AFD81DA000057CD /* GameDescriptionView.swift in Sources */,
 				D799D0BB2AFD83EB000057CD /* GameDescriptionViewModel.swift in Sources */,
 				D796ABB22AEAF138009D97CE /* LibraryView.swift in Sources */,
+				D73A65032B2197620045D1A0 /* PaymentSuccessView.swift in Sources */,
 				D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */,
 				D796ABE02AEAF846009D97CE /* GameTitle.swift in Sources */,
 				D796ABE72AEAF901009D97CE /* LibraryViewModel.swift in Sources */,
