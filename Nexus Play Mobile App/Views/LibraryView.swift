@@ -100,6 +100,8 @@ struct LibraryView: View {
 struct LibRow: View {
     let game: GameTitle
     
+    @State private var lastPlayed: Double = Double.random(in: 1...72)
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let url = URL(string: game.backgroundImage) {
@@ -125,7 +127,7 @@ struct LibRow: View {
                 .lineLimit(nil)
                 .frame(width: 300, alignment: .leading)
                 
-            Text("Release Date: \(game.released)")
+            Text(String(format: "Last Played: %.0f hours ago", lastPlayed))
                 .frame(width: 300, alignment: .leading)
         }
         .padding()

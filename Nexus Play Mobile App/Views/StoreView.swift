@@ -41,7 +41,7 @@ struct StoreView: View {
 //                        Main Banner
                         if viewModel.gameTitles.count > 1 {
                             let mainBannerGame = viewModel.gameTitles[1] // Access the second element
-                            NavigationLink(destination: GameDescriptionView(gameId: mainBannerGame.id)) {
+                            NavigationLink(destination: StoreDescriptionView(gameId: mainBannerGame.id, viewModel: gameDescriptionViewModel)) {
                                 MainBanner(game: mainBannerGame)
                             }
                         }
@@ -113,6 +113,8 @@ struct StoreView: View {
 struct MainBanner: View {
     let game: GameTitle
     
+    @State private var price: Double = Double.random(in: 10...100)
+    
     var body: some View {
         VStack(alignment: .center) {
             if let url = URL(string: game.backgroundImage) {
@@ -120,23 +122,36 @@ struct MainBanner: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 350)
+                        .frame(width: 380)
                         .cornerRadius(5)
                         .clipped()
                 } placeholder: {
                     Rectangle()
                         .foregroundColor(.gray)
-                        .frame(width: 350)
+                        .frame(width: 380)
                 }
             }
-            Text(game.name)
-                .font(.title2)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding(.vertical, 5)
-                .fixedSize(horizontal: false, vertical: true)
-                .lineLimit(nil)
-                .frame(maxWidth: 400, alignment: .center)
+            HStack(alignment: .center){
+                Text(game.name)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 5)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(nil)
+                    .frame(maxWidth: 400, alignment: .leading)
+                
+                Spacer()
+                
+                Text(String(format: "$%.2f", price))
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 10)
+                    .fontWeight(.bold)
+                    .background(Color.green)
+                    .cornerRadius(5)
+            }
+            .padding(.horizontal, 10)
+            
         }
         .padding()
     }

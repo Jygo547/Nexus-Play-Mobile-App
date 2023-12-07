@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D73A65032B2197620045D1A0 /* PaymentSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */; };
+		D73A65052B226D870045D1A0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73A65042B226D870045D1A0 /* ProfileView.swift */; };
 		D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */; };
 		D796ABB22AEAF138009D97CE /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D796ABB12AEAF138009D97CE /* LibraryView.swift */; };
 		D796ABB42AEAF13D009D97CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D796ABB32AEAF13D009D97CE /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessView.swift; sourceTree = "<group>"; };
+		D73A65042B226D870045D1A0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D796ABAC2AEAF137009D97CE /* Nexus Play Mobile App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nexus Play Mobile App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D796ABAF2AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nexus_Play_Mobile_AppApp.swift; sourceTree = "<group>"; };
 		D796ABB12AEAF138009D97CE /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				D799D0BC2AFD8EB8000057CD /* StoreView.swift */,
 				D799D0C22B19AEC8000057CD /* PaymentDetailsView.swift */,
 				D73A65022B2197620045D1A0 /* PaymentSuccessView.swift */,
+				D73A65042B226D870045D1A0 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				D796ABB02AEAF138009D97CE /* Nexus_Play_Mobile_AppApp.swift in Sources */,
 				D796ABE02AEAF846009D97CE /* GameTitle.swift in Sources */,
 				D796ABE72AEAF901009D97CE /* LibraryViewModel.swift in Sources */,
+				D73A65052B226D870045D1A0 /* ProfileView.swift in Sources */,
 				D799D0C12B06C448000057CD /* StoreDescriptionView.swift in Sources */,
 				D799D0BF2B06B7B4000057CD /* CartView.swift in Sources */,
 				D799D0C32B19AEC8000057CD /* PaymentDetailsView.swift in Sources */,
