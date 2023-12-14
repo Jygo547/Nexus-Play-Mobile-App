@@ -10,12 +10,13 @@ import SwiftUI
 import UIKit
 
 struct CartView: View {
-    @StateObject var viewModel: GameDescriptionViewModel
+    @ObservedObject var viewModel: GameDescriptionViewModel
     @State private var price: Double = Double.random(in: 10...100)
     @State private var cartGameIds: [Int] = []
+    @EnvironmentObject var tabSelector: GlobalTabSelectionManager
 
     init(viewModel: GameDescriptionViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._viewModel = ObservedObject(wrappedValue: viewModel)
         
         // Navigation bar appearance settings
         let scrollEdgeAppearance = UINavigationBarAppearance()

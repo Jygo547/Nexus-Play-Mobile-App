@@ -11,7 +11,7 @@ import UIKit
 
 struct StoreView: View {
     @ObservedObject var viewModel = LibraryViewModel()
-    @StateObject var gameDescriptionViewModel = GameDescriptionViewModel()
+    @ObservedObject var gameDescriptionViewModel = GameDescriptionViewModel()
 
    init() {
         let scrollEdgeAppearance = UINavigationBarAppearance()

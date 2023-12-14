@@ -38,7 +38,6 @@ struct StoreDescriptionView: View {
             cartIds.append(gameId)
             UserDefaults.standard.set(cartIds, forKey: "cartIds")
         }
-//        tabSelectionManager.selectedTab = 2
         
         print("Function called")
     }
