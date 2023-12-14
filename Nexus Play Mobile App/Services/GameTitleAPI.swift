@@ -24,7 +24,7 @@ class GameTitleAPI {
                     DispatchQueue.main.async {
                         completion(.success(gameTitles.results))
                     }
-                    print(gameTitles.results)
+                    
                 } catch {
                     DispatchQueue.main.async {
                         completion(.failure(error))

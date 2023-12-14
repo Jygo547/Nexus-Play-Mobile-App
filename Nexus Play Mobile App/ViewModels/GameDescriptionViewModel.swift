@@ -14,19 +14,19 @@ class GameDescriptionViewModel: ObservableObject {
     @Published var cartItems: [Int: GameDescription] = [:]
     @Published var isLoading = false
     @Published var errorMessage: String?
-    private var loadedIds: Set<Int> = []
+//    private var loadedIds: Set<Int> = []
     
     // New method to fetch multiple game descriptions
     
     func fetchGameDescriptions(ids: [Int]) {
         
-        let newIds = ids.filter { !loadedIds.contains($0) }
-        guard !newIds.isEmpty else { return }
+//        let newIds = ids.filter { !loadedIds.contains($0) }
+//        guard !newIds.isEmpty else { return }
         
         isLoading = true
         let group = DispatchGroup()
 
-        newIds.forEach { id in
+        ids.forEach { id in
             group.enter()
             GameTitleAPI.shared.fetchGameDescription(id: id) { [weak self] result in
                 DispatchQueue.main.async {
@@ -35,7 +35,7 @@ class GameDescriptionViewModel: ObservableObject {
                     switch result {
                     case .success(let description):
                         strongSelf.gameDescriptions[id] = description
-                        strongSelf.loadedIds.insert(id)
+//                        strongSelf.loadedIds.insert(id)
                         
                     case .failure(let error):
                         strongSelf.errorMessage = error.localizedDescription
