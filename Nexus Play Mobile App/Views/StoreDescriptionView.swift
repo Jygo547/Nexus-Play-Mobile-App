@@ -11,7 +11,7 @@ import UIKit
 
 struct StoreDescriptionView: View {
     @ObservedObject var viewModel: GameDescriptionViewModel
-//    @EnvironmentObject var tabSelectionManager: TabSelectionManager
+    @EnvironmentObject var tabSelector: GlobalTabSelectionManager
     
     let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
@@ -38,7 +38,7 @@ struct StoreDescriptionView: View {
             cartIds.append(gameId)
             UserDefaults.standard.set(cartIds, forKey: "cartIds")
         }
-        
+            
         print("Function called")
     }
     
@@ -96,6 +96,30 @@ struct StoreDescriptionView: View {
                                     .cornerRadius(5)
                                 
                                 Spacer()
+                                
+//                                Button that navigates to CartView from the tab
+                                
+                                Button(action: {
+                                    addToCart()
+                                    selectedGameId = gameId // Set the game ID to trigger navigation
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        tabSelector.selectedTab = .cart
+                                    }
+                                    
+                                    print("Add to cart clicked, gameId: \(gameId)")
+                                }) {
+                                    HStack {
+                                        Image(systemName: "cart.fill.badge.plus")
+                                        Text("Add to cart")
+                                    }
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.brown)
+                                    .cornerRadius(5)
+                                }
+                                
+//                                Button that updates CartView in the StoreView tab
                                 
                                 Button(action: {
                                     addToCart()
