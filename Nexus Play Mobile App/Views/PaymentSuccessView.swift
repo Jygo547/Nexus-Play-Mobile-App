@@ -66,19 +66,7 @@ struct PaymentSuccessView: View {
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
-
-                // Button for reporting an issue
-                Button(action: {
-                    // Action for reporting an issue
-                }) {
-                    Text("Report an Issue")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                }
-                .padding()
+                
             }
 
         }

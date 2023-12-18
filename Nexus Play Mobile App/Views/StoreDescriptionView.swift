@@ -10,27 +10,25 @@ import SwiftUI
 import UIKit
 
 struct StoreDescriptionView: View {
-    @ObservedObject var viewModel: GameDescriptionViewModel
+    @ObservedObject var viewModel = GameDescriptionViewModel.shared
     @EnvironmentObject var tabSelector: GlobalTabSelectionManager
     
     let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
     @State private var selectedGameId: Int?
     
-    init(gameId: Int, viewModel: GameDescriptionViewModel) {
-        self.gameId = gameId
-        self.viewModel = viewModel
-        
-        let scrollEdgeAppearance = UINavigationBarAppearance()
-        scrollEdgeAppearance.configureWithTransparentBackground()
-
-        let standardAppearance = UINavigationBarAppearance()
-        standardAppearance.configureWithOpaqueBackground()
-        standardAppearance.backgroundColor = UIColor.black.withAlphaComponent(0.85)
-
-        UINavigationBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
-        UINavigationBar.appearance().standardAppearance = standardAppearance
-    }
+//    init() {
+//        
+//        let scrollEdgeAppearance = UINavigationBarAppearance()
+//        scrollEdgeAppearance.configureWithTransparentBackground()
+//
+//        let standardAppearance = UINavigationBarAppearance()
+//        standardAppearance.configureWithOpaqueBackground()
+//        standardAppearance.backgroundColor = UIColor.black.withAlphaComponent(0.85)
+//
+//        UINavigationBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
+//        UINavigationBar.appearance().standardAppearance = standardAppearance
+//    }
     
     private func addToCart() {
         var cartIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
@@ -40,6 +38,11 @@ struct StoreDescriptionView: View {
         }
             
         print("Function called")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            tabSelector.selectedTab = .cart
+        }
+        
     }
     
     var body: some View {
@@ -103,9 +106,6 @@ struct StoreDescriptionView: View {
                                     addToCart()
                                     selectedGameId = gameId // Set the game ID to trigger navigation
                                     
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        tabSelector.selectedTab = .cart
-                                    }
                                     
                                     print("Add to cart clicked, gameId: \(gameId)")
                                 }) {
@@ -182,15 +182,20 @@ struct StoreDescriptionView: View {
                     }
                 }
             }
+                .onAppear{
+                    print("Page Appeared")
+                }
+                .onDisappear{
+                    print("Page gone")
+                }
     }
+        
 }
 
 struct StoreDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let viewModel = GameDescriptionViewModel()
-        
-        StoreDescriptionView(gameId: 754, viewModel: viewModel)
+        StoreDescriptionView(gameId: 754)
     }
 }
 

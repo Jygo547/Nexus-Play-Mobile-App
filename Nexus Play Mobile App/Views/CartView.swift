@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 struct CartView: View {
-    @ObservedObject var viewModel: GameDescriptionViewModel
+    @ObservedObject var viewModel = GameDescriptionViewModel.shared
     @State private var price: Double = Double.random(in: 10...100)
     @State private var cartGameIds: [Int] = []
     @EnvironmentObject var tabSelector: GlobalTabSelectionManager

@@ -10,6 +10,9 @@ import Combine
 import Foundation
 
 class GameDescriptionViewModel: ObservableObject {
+    
+    static let shared = GameDescriptionViewModel()
+    
     @Published var gameDescriptions: [Int: GameDescription] = [:] // For multiple game descriptions
     @Published var cartItems: [Int: GameDescription] = [:]
     @Published var isLoading = false
@@ -23,7 +26,7 @@ class GameDescriptionViewModel: ObservableObject {
 //        let newIds = ids.filter { !loadedIds.contains($0) }
 //        guard !newIds.isEmpty else { return }
         
-        isLoading = true
+
         let group = DispatchGroup()
 
         ids.forEach { id in
@@ -46,7 +49,9 @@ class GameDescriptionViewModel: ObservableObject {
 
         group.notify(queue: .main) {
             [weak self] in
-            self?.isLoading = false
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
         }
     }
     
@@ -72,7 +77,9 @@ class GameDescriptionViewModel: ObservableObject {
 
         group.notify(queue: .main) {
             [weak self] in
-            self?.isLoading = false
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
         }
     }
 

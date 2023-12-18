@@ -17,7 +17,7 @@ class TabSelectionManager: ObservableObject {
 struct MainView: View {
     
     @StateObject var libraryViewModel = LibraryViewModel()
-    @StateObject var gameDescriptionViewModel = GameDescriptionViewModel()
+    @StateObject var gameDescriptionViewModel = GameDescriptionViewModel.shared
     
     @StateObject var tabSelector = GlobalTabSelectionManager()
     

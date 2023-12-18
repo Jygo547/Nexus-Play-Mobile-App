@@ -10,13 +10,13 @@ import SwiftUI
 import UIKit
 
 struct GameDescriptionView: View {
-    @ObservedObject var viewModel: GameDescriptionViewModel
+    @ObservedObject var viewModel = GameDescriptionViewModel.shared
     let gameId: Int
     @State private var price: Double = Double.random(in: 10...100)
     
     init(gameId: Int) {
         self.gameId = gameId
-        viewModel = GameDescriptionViewModel()
+        viewModel = viewModel
         viewModel.fetchGameDescriptions(ids: [gameId])
         
         let scrollEdgeAppearance = UINavigationBarAppearance()

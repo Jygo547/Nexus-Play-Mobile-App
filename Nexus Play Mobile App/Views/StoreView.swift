@@ -10,8 +10,8 @@ import SwiftUI
 import UIKit
 
 struct StoreView: View {
-    @ObservedObject var viewModel = LibraryViewModel()
-    @ObservedObject var gameDescriptionViewModel = GameDescriptionViewModel()
+    @StateObject var viewModel = LibraryViewModel()
+    @StateObject var gameDescriptionViewModel = GameDescriptionViewModel.shared
 
    init() {
         let scrollEdgeAppearance = UINavigationBarAppearance()
@@ -41,7 +41,7 @@ struct StoreView: View {
 //                        Main Banner
                         if viewModel.gameTitles.count > 1 {
                             let mainBannerGame = viewModel.gameTitles[1] // Access the second element
-                            NavigationLink(destination: StoreDescriptionView(gameId: mainBannerGame.id, viewModel: gameDescriptionViewModel)) {
+                            NavigationLink(destination: StoreDescriptionView(gameId: mainBannerGame.id)) {
                                 MainBanner(game: mainBannerGame)
                             }
                         }
@@ -58,7 +58,7 @@ struct StoreView: View {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(15).prefix(5)), id: \.self) { game in
                                     NavigationLink(destination:
-                                        StoreDescriptionView(gameId: game.id, viewModel: gameDescriptionViewModel)
+                                        StoreDescriptionView(gameId: game.id)
                                     ) {
                                         StoreRow(game: game)
                                     }
@@ -81,7 +81,7 @@ struct StoreView: View {
 
                                 ForEach(Array(viewModel.gameTitles.dropFirst(2)), id: \.self) { game in
                                     NavigationLink(destination:
-                                        StoreDescriptionView(gameId: game.id, viewModel: gameDescriptionViewModel)
+                                        StoreDescriptionView(viewModel: gameDescriptionViewModel, gameId: game.id)
                                     ) {
                                         StoreRow(game: game)
                                     }

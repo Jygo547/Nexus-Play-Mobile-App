@@ -10,10 +10,10 @@ import SwiftUI
 import UIKit
 
 struct LibraryView: View {
-    @ObservedObject var viewModel = LibraryViewModel()
+    @StateObject var viewModel = LibraryViewModel()
 
    init() {
-        let scrollEdgeAppearance = UINavigationBarAppearance()
+       let scrollEdgeAppearance = UINavigationBarAppearance()
         scrollEdgeAppearance.configureWithTransparentBackground()
 
         let standardAppearance = UINavigationBarAppearance()
