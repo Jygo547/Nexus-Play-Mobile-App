@@ -45,6 +45,11 @@ struct StoreDescriptionView: View {
         
     }
     
+    private func updateUserDefaultsForCart() {
+        let cartItemIds = Array(viewModel.cartItems.keys)
+        UserDefaults.standard.set(cartItemIds, forKey: "cartItems")
+    }
+    
     var body: some View {
                 ZStack{
                 
@@ -106,24 +111,12 @@ struct StoreDescriptionView: View {
                                     addToCart()
                                     selectedGameId = gameId // Set the game ID to trigger navigation
                                     
+                                    // Code to add the item to the cart
+                                    viewModel.addItemToCart(gameId)
+                                        
+                                    // Update UserDefaults
+                                    updateUserDefaultsForCart()
                                     
-                                    print("Add to cart clicked, gameId: \(gameId)")
-                                }) {
-                                    HStack {
-                                        Image(systemName: "cart.fill.badge.plus")
-                                        Text("Add to cart")
-                                    }
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(Color.brown)
-                                    .cornerRadius(5)
-                                }
-                                
-//                                Button that updates CartView in the StoreView tab
-                                
-                                Button(action: {
-                                    addToCart()
-                                    selectedGameId = gameId // Set the game ID to trigger navigation
                                     print("Add to cart clicked, gameId: \(gameId)")
                                 }) {
                                     HStack {
@@ -135,6 +128,7 @@ struct StoreDescriptionView: View {
                                     .background(Color.pink)
                                     .cornerRadius(5)
                                 }
+                                
                                 
                                 if selectedGameId != nil {
                                     // NavigationLink triggered by selectedGameId

@@ -11,6 +11,8 @@ import UIKit
 
 struct PaymentSuccessView: View {
     
+    @EnvironmentObject var tabSelector: GlobalTabSelectionManager
+    
     init() {
          let scrollEdgeAppearance = UINavigationBarAppearance()
          scrollEdgeAppearance.configureWithTransparentBackground()
@@ -57,7 +59,13 @@ struct PaymentSuccessView: View {
                     .padding(.bottom, 10)
 
                 // Button to go back to the root view
-                NavigationLink(destination: StoreView()) {
+                
+                Button(action: {
+                    // Trigger tab change after a delay
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        tabSelector.selectedTab = .store
+                    }
+                }) {
                     Text("Back to Home")
                         .foregroundColor(.white)
                         .padding()

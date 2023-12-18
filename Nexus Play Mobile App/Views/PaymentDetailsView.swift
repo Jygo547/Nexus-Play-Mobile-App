@@ -14,6 +14,8 @@ struct PaymentDetailsView: View {
     
     @State private var isChecked: Bool = false
     
+    @State private var showPaymentSuccessView = false
+    
     init() {
          let scrollEdgeAppearance = UINavigationBarAppearance()
          scrollEdgeAppearance.configureWithTransparentBackground()
@@ -127,22 +129,28 @@ struct PaymentDetailsView: View {
                 }
                 .padding(.bottom)
                 
-                HStack {
-                    Image(systemName: isChecked ? "checkmark.square.fill" : "square")
-                        .resizable()
-                        .onTapGesture {
-                            self.isChecked.toggle()
-                        }
-                        .foregroundStyle(Color.pink)
-                        .frame(width: 30, height: 30)
-                        .padding(.trailing, 15)
-                        
-                    Text("Save Card and Billing Details for future purchases")
-                        .foregroundStyle(Color.white)
-                }
-                .padding(.horizontal, 5)
+//                HStack {
+//                    Button(action: {
+//                        self.isChecked.toggle()
+//                    }) {
+//                        Image(systemName: isChecked ? "checkmark.square.fill" : "square")
+//                            .foregroundColor(isChecked ? .green : .gray)
+//                    }
+//                    Text("Save Card and Billing Details for future purchases")
+//                        .foregroundColor(.white)
+//                        .onTapGesture {
+//                            self.isChecked.toggle()
+//                        }
+//                }
+//                .padding(.horizontal, 5)
 
-                NavigationLink(destination: PaymentSuccessView()) {
+                Button(action: {
+                    if isChecked {
+                        paymentDetails.saveToUserDefaults()
+                    }
+                    
+                    self.showPaymentSuccessView = true
+                }) {
                     Text("Purchase")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
@@ -150,9 +158,15 @@ struct PaymentDetailsView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.green)
                         .cornerRadius(10)
+                        .padding(.horizontal, 30)
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical)
+                .navigationDestination(isPresented: $showPaymentSuccessView) {
+                    PaymentSuccessView()
+                    
+                    EmptyView()
+                }
 
                 Spacer()
             }
@@ -179,6 +193,35 @@ struct PaymentDetails {
     var state: String = ""
     var country: String = ""
     var zipCode: String = ""
+    
+    func saveToUserDefaults() {
+        UserDefaults.standard.set(cardNumber, forKey: "cardNumber")
+        UserDefaults.standard.set(expirationDate, forKey: "expirationDate")
+        UserDefaults.standard.set(cvv, forKey: "cvv")
+        UserDefaults.standard.set(cardHolder, forKey: "cardHolder")
+        UserDefaults.standard.set(street, forKey: "street")
+        UserDefaults.standard.set(apartment, forKey: "apartment")
+        UserDefaults.standard.set(city, forKey: "city")
+        UserDefaults.standard.set(state, forKey: "state")
+        UserDefaults.standard.set(country, forKey: "country")
+        UserDefaults.standard.set(zipCode, forKey: "zipCode")
+    }
+    
+    static func loadFromUserDefaults() -> PaymentDetails {
+            var details = PaymentDetails()
+            details.cardNumber = UserDefaults.standard.string(forKey: "cardNumber") ?? ""
+        details.expirationDate = UserDefaults.standard.string(forKey: "expirationDate") ?? ""
+        details.cvv = UserDefaults.standard.string(forKey: "cvv") ?? ""
+        details.cardHolder = UserDefaults.standard.string(forKey: "cardHolder") ?? ""
+        details.street = UserDefaults.standard.string(forKey: "street") ?? ""
+        details.apartment = UserDefaults.standard.string(forKey: "apartment") ?? ""
+        details.city = UserDefaults.standard.string(forKey: "city") ?? ""
+        details.state = UserDefaults.standard.string(forKey: "state") ?? ""
+        details.country = UserDefaults.standard.string(forKey: "country") ?? ""
+        details.zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
+            return details
+        }
+    
 }
 
 struct MyTextFieldStyle: TextFieldStyle {

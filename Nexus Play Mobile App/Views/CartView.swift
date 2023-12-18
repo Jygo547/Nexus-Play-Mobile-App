@@ -14,6 +14,8 @@ struct CartView: View {
     @State private var price: Double = Double.random(in: 10...100)
     @State private var cartGameIds: [Int] = []
     @EnvironmentObject var tabSelector: GlobalTabSelectionManager
+    
+    @State private var refreshID = UUID()
 
     init(viewModel: GameDescriptionViewModel) {
         self._viewModel = ObservedObject(wrappedValue: viewModel)
@@ -29,6 +31,19 @@ struct CartView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
         UINavigationBar.appearance().standardAppearance = standardAppearance
 
+    }
+    
+    private func removeFromCart(_ gameId: Int) {
+        print("Removing game with ID: \(gameId)")
+        viewModel.removeItemFromCart(gameId)
+        cartGameIds = Array(viewModel.cartItems.keys)
+        updateUserDefaults()
+        refreshID = UUID()
+    }
+    
+    private func updateUserDefaults() {
+        let cartItemIds = Array(viewModel.cartItems.keys)
+        UserDefaults.standard.set(cartItemIds, forKey: "cartItems")
     }
     
     var body: some View {
@@ -83,10 +98,16 @@ struct CartView: View {
                                         
                                         Spacer()
                                         
-                                        Text("Remove")
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(Color.red)
-                                            .underline()
+                                        Button(action: {
+                                                self.removeFromCart(gameId)
+                                            }) {
+                                                Text("Remove")
+                                                    .fontWeight(.semibold)
+                                                    .foregroundStyle(Color.red)
+                                                    .underline()
+                                            }
+                                            
+                                        
                                         
                                     }
                                     .overlay(
@@ -100,13 +121,20 @@ struct CartView: View {
                             }
                             
                             HStack {
-                                NavigationLink(destination: StoreView()) {
-                                    Image(systemName: "arrowshape.turn.up.backward.fill")
-                                    Text("Add more games")
+                                Button(action: {
+                                    // Trigger tab change after a delay
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        tabSelector.selectedTab = .store
+                                    }
+                                }) {
+                                    HStack {
+                                        Image(systemName: "arrowshape.turn.up.backward.fill")
+                                        Text("Add more games")
+                                    }
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(5)
                                 }
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(5)
                                 
                                 Spacer()
                                 
@@ -139,6 +167,8 @@ struct CartView: View {
             .onAppear {
                 cartGameIds = UserDefaults.standard.array(forKey: "cartIds") as? [Int] ?? []
                 
+                cartGameIds = Array(viewModel.cartItems.keys)
+                
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -148,6 +178,7 @@ struct CartView: View {
                         .frame(height: 30)
                 }
             }
+            .id(refreshID)
         
     }
 }

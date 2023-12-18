@@ -82,6 +82,22 @@ class GameDescriptionViewModel: ObservableObject {
             }
         }
     }
+    
+    func addItemToCart(_ gameId: Int) {
+            // Assuming you have a method or a way to get GameDescription by gameId
+            if let gameDescription = fetchGameDescriptionById(gameId) {
+                cartItems[gameId] = gameDescription
+            }
+    }
+    
+    private func fetchGameDescriptionById(_ gameId: Int) -> GameDescription? {
+            // Assuming gameDescriptions dictionary contains the required game descriptions
+            return gameDescriptions[gameId]
+    }
+    
+    func removeItemFromCart(_ gameId: Int) {
+            cartItems.removeValue(forKey: gameId)
+    }
 
 }
 
